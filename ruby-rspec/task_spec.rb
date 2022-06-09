@@ -1,11 +1,12 @@
 require 'rspec'
-require_relative 'rspec'
+require_relative 'task'
+require_relative 'tasklist'
 require 'date'
 
 describe 'Task' do
 
   it 'has to be real' do
-    expect{ Task.new ''}.to_not raise_error
+    expect{ Task.new }.to_not raise_error
   end
 
   it 'has a title' do
@@ -24,7 +25,7 @@ end
 describe 'TaskList' do
 
   it 'has to be real' do
-    expect{ TaskList.new ''}.to_not raise_error
+    expect{ TaskList.new }.to_not raise_error
   end
 
   it 'has a title' do
@@ -82,4 +83,29 @@ describe 'TaskList' do
     expect{ monday.daily_task dishes}.to change{ monday.task_done }.from([]).to([dishes])
 
   end
+
+  it 'has a sorted list' do
+    monday = TaskList.new 'Monday'
+    trash = Task.new 'Trash'
+    dishes = Task.new 'Dishes'
+    laundry = Task.new 'Laundry'
+    meals = Task.new 'Meals'
+    monday.add_task meals
+    monday.add_task trash
+    monday.add_task laundry
+    monday.add_task dishes
+    dishes.set_status
+    dishes.another_day 5
+    trash.another_day 5
+    laundry.another_day 2
+    monday.progress meals
+    monday.progress trash
+    monday.progress laundry
+    monday.progress dishes
+    expect(monday.incomplete_list).to eq [meals, trash, laundry]
+    expect(monday.complete_list).to eq [dishes]
+    expect{ monday.sorter }.to change{ monday.incomplete_list }.from([meals, trash, laundry]).to([meals, laundry, trash])
+
+  end
+
 end
