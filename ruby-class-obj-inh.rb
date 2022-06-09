@@ -120,17 +120,11 @@ class ColorPalette
     @color1 = color1
     @color2 = color2
     @color3 = color3
-
-    # @status = 'incomplete'
   end
   # # getter method
   def all_colors
     "The three colors of this palette are #{color1}, #{color2}, and #{color3}."
   end
-  # # setter method
-  # def set_status
-  #   @status = 'complete'
-  # end
 end
 
 # objects
@@ -155,13 +149,6 @@ red = ColorPalette.new 'Burgundy', 'Wine', 'Strawberry'
 
 gray.color1 = 'Smoky'
 p gray
-# # print setter method call
-# trash.set_status
-# meals.set_status
-# bills.set_status
-# p trash
-# p meals
-# p bills
 
 # As a developer, I can create a class called ColorPalette.
 # As a developer, I can create three instances (objects) of class ColorPalette. (e.g green = ColorPalette.new)
