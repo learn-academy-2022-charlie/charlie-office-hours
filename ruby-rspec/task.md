@@ -10,7 +10,7 @@ Story: As a developer, I can create a Task.
 ```ruby
 # in rspec_spec.rb
 require 'rspec'
-require_relative 'rspec'
+require_relative 'task'
 
 describe 'Task' do
 
@@ -41,7 +41,7 @@ Story: As a developer, I can give a Task a title and retrieve it.
 
 - Update Task Class and create object
 ```ruby
-  # attr_accesor
+  # attr_accessor
   attr_accessor :title
   # initialize method
   def initialize title
@@ -74,7 +74,7 @@ Story: As a developer, when I print a Task that is done, its status is shown.
 ```
 - Update class
 ```ruby
-  # attr_accesor
+  # attr_accessor
     attr_accessor :title, :status
   # initialize method
   def initialize title
@@ -102,15 +102,17 @@ end
 ```
 
 Story: As a developer with a TaskList, I can print the completed items.
-Possible refactor example
-def progress hash
-  hash.select{|key, value| value = 'done'}
-end
-
 Story: As a developer with a TaskList, I can print the incomplete items.
+-used similar steps as created the @list array
 
 Stretch: Due Date
 Story: As a developer, I can give a Task a due date. Hint: Use the built-in Ruby Date class.
+```ruby
+require 'date'
+
+@due_date = Date.today 
+```
+
 
 Story: As a developer with a TaskList, I can list all the not completed items that are due today.
 
